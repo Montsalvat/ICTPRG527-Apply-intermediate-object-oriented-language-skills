@@ -1,0 +1,53 @@
+use students;
+
+create user 'user2'@'localhost' identified by 'Password01';
+grant SELECT, INSERT, UPDATE, DELETE on students TO 'user2'@'localhost' identified by 'Password01';
+
+CREATE TABLE student(
+sid VARCHAR(10) PRIMARY KEY,
+fname VARCHAR(30),
+lname VARCHAR(30));
+
+CREATE TABLE unit(
+uid VARCHAR(10) PRIMARY KEY,
+uname VARCHAR(30));
+
+CREATE TABLE enrolled(
+studentid VARCHAR(10),
+unitid VARCHAR(10),
+year INT,
+sem INT,
+fees int,
+PRIMARY KEY (studentid, unitid, year, sem),
+FOREIGN KEY (studentid) REFERENCES student(sid));
+
+ALTER TABLE enrolled ADD FOREIGN KEY (unitid) REFERENCES unit(uid);
+
+INSERT INTO student VALUES('S001', 'Delia','Johnson');
+INSERT INTO student VALUES('S002', 'Ava','Young');
+INSERT INTO student VALUES('S003', 'Mary','Thomas');
+INSERT INTO student VALUES('S004', 'Shawn','Ward');
+INSERT INTO student VALUES('S005', 'Patricia','Stephenson');
+INSERT INTO student VALUES('S006', 'Willie','Carr');
+
+INSERT INTO unit VALUES('U001','Computer Science');
+INSERT INTO unit VALUES('U002','Maths');
+INSERT INTO unit VALUES('U003','Science');
+INSERT INTO unit VALUES('U004','English');
+INSERT INTO unit VALUES('U005','Information Technology');
+INSERT INTO unit VALUES('U006','Psychology');
+
+INSERT INTO enrolled VALUES ('S001','U004',2010,1,1000);
+INSERT INTO enrolled VALUES ('S004','U003',2015,2,12000);
+INSERT INTO enrolled VALUES ('S006','U001',2012,1,5000);
+INSERT INTO enrolled VALUES ('S002','U006',2019,3,2500);
+INSERT INTO enrolled VALUES ('S005','U002',2016,5,3000);
+INSERT INTO enrolled VALUES ('S003','U005',2017,4,25000);
+
+
+INSERT INTO student VALUES('V1234','Vikram','Teacher');
+INSERT INTO student VALUES('M1234', 'Murad','Quazi');
+INSERT INTO student VALUES('A1234','Maria','Higginbotham');
+INSERT INTO student VALUES('B1234', 'Mildred','Hamilton');
+INSERT INTO student VALUES('C1234','Sarah','Vera');
+INSERT INTO student VALUES('D1234', 'Louis','Woolard');
